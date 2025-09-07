@@ -21,7 +21,7 @@ const documentContent = {
     },
     privacy: {
       title: 'Microsoft Apps - Privacy Policy',
-      content: `<iframe src="/docs/micro-apps/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      content: `<iframe src="/docs/microsoft-apps/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
   },
   'desktop-apps': {
