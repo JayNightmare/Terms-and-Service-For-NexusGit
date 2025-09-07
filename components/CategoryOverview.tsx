@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { FileText, Shield, Bot, Monitor, Smartphone } from 'lucide-react';
+import { FileText, Shield, Bot, Monitor, Grid2x2 } from 'lucide-react';
 
 const categoryData = {
   'discord-bots': {
@@ -13,58 +13,58 @@ const categoryData = {
       {
         type: 'terms',
         title: 'Terms of Service',
-        description: 'Usage terms, conditions, and user obligations for Discord bot services'
+        description: 'Usage terms, conditions, and user obligations for Discord bot services',
       },
       {
         type: 'privacy',
         title: 'Privacy Policy',
-        description: 'Data collection, usage, and privacy practices for Discord bots'
-      }
-    ]
+        description: 'Data collection, usage, and privacy practices for Discord bots',
+      },
+    ],
   },
   'microsoft-apps': {
     title: 'Microsoft Apps',
-    description: 'Legal documentation for Microsoft Office and Teams integrations',
-    icon: Monitor,
+    description: 'Legal documentation for Microsoft application and service integrations',
+    icon: Grid2x2,
     color: 'bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400',
     documents: [
       {
         type: 'terms',
         title: 'Terms of Service',
-        description: 'Licensing terms and conditions for Microsoft application integrations'
+        description: 'Licensing terms and conditions for Microsoft application integrations',
       },
       {
         type: 'privacy',
         title: 'Privacy Policy',
-        description: 'Data handling practices within Microsoft ecosystem'
-      }
-    ]
+        description: 'Data handling practices within Microsoft ecosystem',
+      },
+    ],
   },
   'desktop-apps': {
     title: 'Desktop Apps',
     description: 'Legal documentation for desktop software applications',
-    icon: Smartphone,
+    icon: Monitor,
     color: 'bg-green-100 text-green-600 dark:bg-green-900/20 dark:text-green-400',
     documents: [
       {
         type: 'terms',
         title: 'Terms of Service',
-        description: 'Software licensing, installation, and usage terms'
+        description: 'Software licensing, installation, and usage terms',
       },
       {
         type: 'privacy',
         title: 'Privacy Policy',
-        description: 'Local data processing and network communication policies'
-      }
-    ]
-  }
+        description: 'Local data processing and network communication policies',
+      },
+    ],
+  },
 };
 
 export function CategoryOverview() {
   const { category } = useParams<{ category: string }>();
-  
+
   const categoryInfo = category ? categoryData[category as keyof typeof categoryData] : null;
-  
+
   if (!categoryInfo) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
@@ -83,7 +83,9 @@ export function CategoryOverview() {
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="mb-8">
         <div className="flex items-center space-x-4 mb-4">
-          <div className={`w-12 h-12 rounded-lg ${categoryInfo.color} flex items-center justify-center`}>
+          <div
+            className={`w-12 h-12 rounded-lg ${categoryInfo.color} flex items-center justify-center`}
+          >
             <IconComponent className="w-6 h-6" />
           </div>
           <div>
@@ -122,9 +124,7 @@ export function CategoryOverview() {
           These documents are regularly updated to reflect current practices and legal requirements.
         </p>
         <Link to="/">
-          <Button variant="outline">
-            Back to All Categories
-          </Button>
+          <Button variant="outline">Back to All Categories</Button>
         </Link>
       </div>
     </div>

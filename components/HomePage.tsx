@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Link } from 'react-router-dom';
-import { Bot, Monitor, Smartphone, ArrowRight, Shield, FileText } from 'lucide-react';
+import { Bot, Monitor, Grid2x2, ArrowRight, Shield, FileText } from 'lucide-react';
 
 const applications = [
   {
@@ -12,26 +12,26 @@ const applications = [
     icon: Bot,
     color: 'bg-purple-100 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400',
     documentCount: 2,
-    lastUpdated: '2024-12-15'
+    lastUpdated: '2024-12-15',
   },
   {
     id: 'microsoft-apps',
     title: 'Microsoft Apps',
-    description: 'Legal documents for Microsoft Office, Teams, and enterprise applications',
-    icon: Monitor,
+    description: 'Legal documentation for Microsoft application and service integrations',
+    icon: Grid2x2,
     color: 'bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400',
     documentCount: 2,
-    lastUpdated: '2024-12-10'
+    lastUpdated: '2024-12-10',
   },
   {
     id: 'desktop-apps',
     title: 'Desktop Apps',
     description: 'Terms and policies for desktop software applications and services',
-    icon: Smartphone,
+    icon: Monitor,
     color: 'bg-green-100 text-green-600 dark:bg-green-900/20 dark:text-green-400',
     documentCount: 2,
-    lastUpdated: '2024-12-08'
-  }
+    lastUpdated: '2024-12-08',
+  },
 ];
 
 export function HomePage() {
@@ -46,8 +46,8 @@ export function HomePage() {
         </div>
         <h1 className="mb-4">Legal Documentation Hub</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-          Centralized access to Terms of Service and Privacy Policy documents for all our applications and services.
-          Browse by category to find the legal documentation you need.
+          Centralized access to Terms of Service and Privacy Policy documents for all our
+          applications and services. Browse by category to find the legal documentation you need.
         </p>
       </div>
 
@@ -102,7 +102,9 @@ export function HomePage() {
             <Card key={app.id} className="hover:shadow-lg transition-all duration-200 group">
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-lg ${app.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                  <div
+                    className={`w-12 h-12 rounded-lg ${app.color} flex items-center justify-center group-hover:scale-110 transition-transform`}
+                  >
                     <app.icon className="w-6 h-6" />
                   </div>
                   <Badge variant="secondary" className="text-xs">
@@ -110,7 +112,9 @@ export function HomePage() {
                   </Badge>
                 </div>
                 <CardTitle className="text-lg">{app.title}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed">{app.description}</CardDescription>
+                <CardDescription className="text-sm leading-relaxed">
+                  {app.description}
+                </CardDescription>
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
@@ -132,12 +136,10 @@ export function HomePage() {
       <div className="text-center mt-16 p-8 bg-muted/50 rounded-lg">
         <h3 className="mb-2">Need Help?</h3>
         <p className="text-muted-foreground mb-4 max-w-md mx-auto">
-          If you have questions about any of our legal documents or need clarification on specific terms, 
-          please don't hesitate to contact our legal team.
+          If you have questions about any of our legal documents or need clarification on specific
+          terms, please don't hesitate to contact our legal team.
         </p>
-        <Button variant="outline">
-          Contact Legal Team
-        </Button>
+        <Button variant="outline">Contact Legal Team</Button>
       </div>
     </div>
   );
