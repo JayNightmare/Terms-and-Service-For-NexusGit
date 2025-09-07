@@ -7,31 +7,31 @@ const documentContent = {
   'discord-bots': {
     terms: {
       title: 'Discord Bots - Terms of Service',
-      content: `<iframe src="../public/docs/discord-bots/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      content: `<iframe src="/docs/discord-bots/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
     privacy: {
       title: 'Discord Bots - Privacy Policy',
-      content: `<iframe src="../public/docs/discord-bots/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      content: `<iframe src="/docs/discord-bots/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
   },
   'microsoft-apps': {
     terms: {
       title: 'Microsoft Apps - Terms of Service',
-      content: `<iframe src="../public/docs/microsoft-apps/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      content: `<iframe src="/docs/microsoft-apps/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
     privacy: {
       title: 'Microsoft Apps - Privacy Policy',
-      content: `<iframe src="../public/docs/micro-apps/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      content: `<iframe src="/docs/micro-apps/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
   },
   'desktop-apps': {
     terms: {
       title: 'Desktop Apps - Terms of Service',
-      content: `<iframe src="../public/docs/desktop-apps/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      content: `<iframe src="/docs/desktop-apps/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
     privacy: {
       title: 'Desktop Apps - Privacy Policy',
-      content: `<iframe src="../public/docs/desktop-apps/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      content: `<iframe src="/docs/desktop-apps/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
   },
 };
