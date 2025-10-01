@@ -118,81 +118,81 @@ export function CategoryOverview() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {categoryInfo.documents && categoryInfo.documents.length > 0 ? (
-          categoryInfo.documents.map((doc) => (
-            <Card key={doc.type} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center space-x-3 mb-2">
-                  <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
-                    <FileText className="w-4 h-4 text-muted-foreground" />
-                  </div>
-                  <CardTitle className="text-lg">{doc.title}</CardTitle>
-                </div>
-                <CardDescription>{doc.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link to={`/${category}/${doc.type}`}>
-                  <Button className="w-full">
-                    <Shield className="w-4 h-4 mr-2" />
-                    View Document
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          ))
-        ) : (
-          <p className="text-muted-foreground">No documents available for this category.</p>
-        )}
-        {category === 'websites' && categoryInfo.sites && categoryInfo.sites.length > 0 && (
+      {categoryInfo.documents &&
+        categoryInfo.documents.length > 0 &&
+        categoryInfo.documents.map((doc) => (
           <>
-            {categoryInfo.sites.map((site) => (
-              <div key={site.slug} className="grid gap-4 md:grid-cols-2">
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
-                        <FileText className="w-4 h-4 text-muted-foreground" />
-                      </div>
-                      <CardTitle className="text-lg">{site.name} - Terms of Service</CardTitle>
+            <div className="grid gap-6 md:grid-cols-2">
+              <Card key={doc.type} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
+                      <FileText className="w-4 h-4 text-muted-foreground" />
                     </div>
-                    <CardDescription>Usage terms and conditions for {site.name}.</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Link to={`/websites/${site.slug}/terms`}>
-                      <Button className="w-full">
-                        <Shield className="w-4 h-4 mr-2" />
-                        View Terms of Service
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
-                        <FileText className="w-4 h-4 text-muted-foreground" />
-                      </div>
-                      <CardTitle className="text-lg">{site.name} - Privacy Policy</CardTitle>
-                    </div>
-                    <CardDescription>
-                      Data collection and privacy practices for {site.name}.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Link to={`/websites/${site.slug}/privacy`}>
-                      <Button className="w-full">
-                        <Shield className="w-4 h-4 mr-2" />
-                        View Privacy Policy
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+                    <CardTitle className="text-lg">{doc.title}</CardTitle>
+                  </div>
+                  <CardDescription>{doc.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Link to={`/${category}/${doc.type}`}>
+                    <Button className="w-full">
+                      <Shield className="w-4 h-4 mr-2" />
+                      View Document
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
           </>
-        )}
-      </div>
+        ))}
+      {category === 'websites' && categoryInfo.sites && categoryInfo.sites.length > 0 && (
+        <>
+          {categoryInfo.sites.map((site) => (
+            <div key={site.slug} className="grid gap-4 md:grid-cols-2">
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
+                      <FileText className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <CardTitle className="text-lg">{site.name} - Terms of Service</CardTitle>
+                  </div>
+                  <CardDescription>Usage terms and conditions for {site.name}.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Link to={`/websites/${site.slug}/terms`}>
+                    <Button className="w-full">
+                      <Shield className="w-4 h-4 mr-2" />
+                      View Terms of Service
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
+                      <FileText className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <CardTitle className="text-lg">{site.name} - Privacy Policy</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Data collection and privacy practices for {site.name}.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Link to={`/websites/${site.slug}/privacy`}>
+                    <Button className="w-full">
+                      <Shield className="w-4 h-4 mr-2" />
+                      View Privacy Policy
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </>
+      )}
 
       <div className="mt-8 text-center">
         <p className="text-sm text-muted-foreground mb-4">
