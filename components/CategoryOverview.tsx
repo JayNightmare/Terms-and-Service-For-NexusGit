@@ -145,6 +145,7 @@ export function CategoryOverview() {
             </div>
           </>
         ))}
+
       {category === 'websites' && categoryInfo.sites && categoryInfo.sites.length > 0 && (
         <>
           {categoryInfo.sites.map((site) => (
