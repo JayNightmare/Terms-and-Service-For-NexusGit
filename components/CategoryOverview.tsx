@@ -71,10 +71,12 @@ const categoryData = {
       {
         name: 'NexusGit',
         url: 'https://nexusgit.com',
+        slug: 'nexusgit',
       },
       {
         name: 'Phun Party',
         url: 'https://phun.party',
+        slug: 'phun-party',
       },
     ],
     documents: [],
@@ -143,31 +145,52 @@ export function CategoryOverview() {
           <p className="text-muted-foreground">No documents available for this category.</p>
         )}
         {category === 'websites' && categoryInfo.sites && categoryInfo.sites.length > 0 && (
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
-                  <Monitor className="w-4 h-4 text-muted-foreground" />
-                </div>
-                <CardTitle className="text-lg">Our Websites</CardTitle>
+          <>
+            {categoryInfo.sites.map((site) => (
+              <div key={site.slug} className="grid gap-4 md:grid-cols-2">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
+                        <FileText className="w-4 h-4 text-muted-foreground" />
+                      </div>
+                      <CardTitle className="text-lg">{site.name} - Terms of Service</CardTitle>
+                    </div>
+                    <CardDescription>Usage terms and conditions for {site.name}.</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Link to={`/websites/${site.slug}/terms`}>
+                      <Button className="w-full">
+                        <Shield className="w-4 h-4 mr-2" />
+                        View Terms of Service
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
+                        <FileText className="w-4 h-4 text-muted-foreground" />
+                      </div>
+                      <CardTitle className="text-lg">{site.name} - Privacy Policy</CardTitle>
+                    </div>
+                    <CardDescription>
+                      Data collection and privacy practices for {site.name}.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Link to={`/websites/${site.slug}/privacy`}>
+                      <Button className="w-full">
+                        <Shield className="w-4 h-4 mr-2" />
+                        View Privacy Policy
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
               </div>
-              <CardDescription>Explore our online platforms and services.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {categoryInfo.sites.map((site) => (
-                <div key={site.url} className="mb-4 last:mb-0">
-                  <a
-                    href={site.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline"
-                  >
-                    {site.name}
-                  </a>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+            ))}
+          </>
         )}
       </div>
 

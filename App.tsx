@@ -13,6 +13,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/:category" element={<CategoryOverview />} />
+            <Route path="/websites/:site/:type" element={<DocumentPage />} />
             <Route path="/:category/:type" element={<DocumentPage />} />
             {/* Catch-all route for unmatched paths */}
             <Route path="*" element={<Navigate to="/" replace />} />

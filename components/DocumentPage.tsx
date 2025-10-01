@@ -34,18 +34,48 @@ const documentContent = {
       content: `<iframe src="/docs/desktop-apps/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
     },
   },
+  websites: {
+    nexusgit: {
+      terms: {
+        title: 'NexusGit - Terms of Service',
+        content: `<iframe src="/docs/websites/nexusgit/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      },
+      privacy: {
+        title: 'NexusGit - Privacy Policy',
+        content: `<iframe src="/docs/websites/nexusgit/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      },
+    },
+    'phun-party': {
+      terms: {
+        title: 'Phun Party - Terms of Service',
+        content: `<iframe src="/docs/websites/phun-party/tos.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      },
+      privacy: {
+        title: 'Phun Party - Privacy Policy',
+        content: `<iframe src="/docs/websites/phun-party/pp.html" class="rounded-xl w-full h-[600px] border-0"></iframe>`,
+      },
+    },
+  },
 };
 
 const categoryTitles = {
   'discord-bots': 'Discord Bots',
   'microsoft-apps': 'Microsoft Apps',
   'desktop-apps': 'Desktop Apps',
+  websites: 'Websites',
 };
-
 export function DocumentPage() {
-  const { category, type } = useParams<{ category: string; type: string }>();
+  const { category, type, site } = useParams<{ category: string; type: string; site?: string }>();
 
-  if (!category || !type || !documentContent[category as keyof typeof documentContent]) {
+  // For websites, use the site parameter; for other categories, use category/type pattern
+  const actualCategory = site ? 'websites' : category;
+  const actualType = site ? type : type;
+
+  if (
+    !actualCategory ||
+    !actualType ||
+    !documentContent[actualCategory as keyof typeof documentContent]
+  ) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
         <h1>Document Not Found</h1>
@@ -60,8 +90,14 @@ export function DocumentPage() {
     );
   }
 
-  const document =
-    documentContent[category as keyof typeof documentContent][type as 'terms' | 'privacy'];
+  let document;
+  if (actualCategory === 'websites' && site) {
+    const websiteContent = documentContent.websites as any;
+    document = websiteContent[site]?.[actualType as 'terms' | 'privacy'];
+  } else {
+    const categoryContent = documentContent[actualCategory as keyof typeof documentContent] as any;
+    document = categoryContent?.[actualType as 'terms' | 'privacy'];
+  }
 
   if (!document) {
     return (
@@ -88,22 +124,30 @@ export function DocumentPage() {
           Home
         </Link>
         <span>/</span>
-        <Link to={`/${category}`} className="hover:text-foreground transition-colors">
-          {categoryTitles[category as keyof typeof categoryTitles]}
+        <Link to={`/${actualCategory}`} className="hover:text-foreground transition-colors">
+          {categoryTitles[actualCategory as keyof typeof categoryTitles]}
         </Link>
+        {actualCategory === 'websites' && site && (
+          <>
+            <span>/</span>
+            <span className="text-foreground">
+              {site === 'nexusgit' ? 'NexusGit' : site === 'phun-party' ? 'Phun Party' : site}
+            </span>
+          </>
+        )}
         <span>/</span>
         <span className="text-foreground">
-          {type === 'terms' ? 'Terms of Service' : 'Privacy Policy'}
+          {actualType === 'terms' ? 'Terms of Service' : 'Privacy Policy'}
         </span>
       </div>
 
       {/* Document Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <Link to={`/${category}`}>
+          <Link to={`/${actualCategory}`}>
             <Button variant="ghost">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to {categoryTitles[category as keyof typeof categoryTitles]}
+              Back to {categoryTitles[actualCategory as keyof typeof categoryTitles]}
             </Button>
           </Link>
         </div>
@@ -112,8 +156,8 @@ export function DocumentPage() {
           <h1 className="mb-2">{document.title}</h1>
           <p className="text-muted-foreground">
             This document outlines the{' '}
-            {type === 'terms' ? 'terms and conditions' : 'privacy practices'} for our{' '}
-            {categoryTitles[category as keyof typeof categoryTitles].toLowerCase()}.
+            {actualType === 'terms' ? 'terms and conditions' : 'privacy practices'} for our{' '}
+            {categoryTitles[actualCategory as keyof typeof categoryTitles].toLowerCase()}.
           </p>
         </div>
       </div>
@@ -137,7 +181,7 @@ export function DocumentPage() {
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button variant="outline">Contact Legal Team</Button>
-          <Link to={`/${category}`}>
+          <Link to={`/${actualCategory}`}>
             <Button variant="outline">View Other Documents</Button>
           </Link>
         </div>

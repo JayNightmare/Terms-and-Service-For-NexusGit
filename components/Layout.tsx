@@ -10,6 +10,7 @@ const navigation = [
   { name: 'Discord Bots', href: '/discord-bots', icon: Bot },
   { name: 'Microsoft Apps', href: '/microsoft-apps', icon: Grid2x2 },
   { name: 'Desktop Apps', href: '/desktop-apps', icon: Monitor },
+  { name: 'Websites', href: '/websites', icon: FileText },
 ];
 
 interface LayoutProps {
