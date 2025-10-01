@@ -86,7 +86,7 @@ export function HomePage() {
                 <Shield className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-semibold">3</p>
+                <p className="text-2xl font-semibold">{applications.length}</p>
                 <p className="text-sm text-muted-foreground">Categories</p>
               </div>
             </div>
