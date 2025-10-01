@@ -118,10 +118,9 @@ export function CategoryOverview() {
         </div>
       </div>
 
-      {categoryInfo.documents &&
-        categoryInfo.documents.length > 0 &&
-        categoryInfo.documents.map((doc) => (
-          <>
+      {category !== 'websites' && categoryInfo.documents && categoryInfo.documents.length > 0 && (
+        <>
+          {categoryInfo.documents.map((doc) => (
             <div className="grid gap-6 md:grid-cols-2">
               <Card key={doc.type} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
@@ -143,8 +142,9 @@ export function CategoryOverview() {
                 </CardContent>
               </Card>
             </div>
-          </>
-        ))}
+          ))}
+        </>
+      )}
 
       {category === 'websites' && categoryInfo.sites && categoryInfo.sites.length > 0 && (
         <>
