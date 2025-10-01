@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { FileText, Shield, Bot, Monitor, Grid2x2 } from 'lucide-react';
 
+// TODO: Transfer to backend database
 const categoryData = {
   'discord-bots': {
     title: 'Discord Bots',
@@ -21,6 +22,7 @@ const categoryData = {
         description: 'Data collection, usage, and privacy practices for Discord bots',
       },
     ],
+    sites: [],
   },
   'microsoft-apps': {
     title: 'Microsoft Apps',
@@ -39,6 +41,7 @@ const categoryData = {
         description: 'Data handling practices within Microsoft ecosystem',
       },
     ],
+    sites: [],
   },
   'desktop-apps': {
     title: 'Desktop Apps',
@@ -57,6 +60,24 @@ const categoryData = {
         description: 'Local data processing and network communication policies',
       },
     ],
+    sites: [],
+  },
+  websites: {
+    title: 'Websites',
+    description: 'Legal documentation for website services and online platforms',
+    icon: FileText,
+    color: 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400',
+    sites: [
+      {
+        name: 'NexusGit',
+        url: 'https://nexusgit.com',
+      },
+      {
+        name: 'Phun Party',
+        url: 'https://phun.party',
+      },
+    ],
+    documents: [],
   },
 };
 
@@ -96,27 +117,58 @@ export function CategoryOverview() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {categoryInfo.documents.map((doc) => (
-          <Card key={doc.type} className="hover:shadow-lg transition-shadow">
+        {categoryInfo.documents && categoryInfo.documents.length > 0 ? (
+          categoryInfo.documents.map((doc) => (
+            <Card key={doc.type} className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="flex items-center space-x-3 mb-2">
+                  <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
+                    <FileText className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <CardTitle className="text-lg">{doc.title}</CardTitle>
+                </div>
+                <CardDescription>{doc.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Link to={`/${category}/${doc.type}`}>
+                  <Button className="w-full">
+                    <Shield className="w-4 h-4 mr-2" />
+                    View Document
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          ))
+        ) : (
+          <p className="text-muted-foreground">No documents available for this category.</p>
+        )}
+        {category === 'websites' && categoryInfo.sites && categoryInfo.sites.length > 0 && (
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader>
               <div className="flex items-center space-x-3 mb-2">
                 <div className="w-8 h-8 rounded bg-muted flex items-center justify-center">
-                  <FileText className="w-4 h-4 text-muted-foreground" />
+                  <Monitor className="w-4 h-4 text-muted-foreground" />
                 </div>
-                <CardTitle className="text-lg">{doc.title}</CardTitle>
+                <CardTitle className="text-lg">Our Websites</CardTitle>
               </div>
-              <CardDescription>{doc.description}</CardDescription>
+              <CardDescription>Explore our online platforms and services.</CardDescription>
             </CardHeader>
             <CardContent>
-              <Link to={`/${category}/${doc.type}`}>
-                <Button className="w-full">
-                  <Shield className="w-4 h-4 mr-2" />
-                  View Document
-                </Button>
-              </Link>
+              {categoryInfo.sites.map((site) => (
+                <div key={site.url} className="mb-4 last:mb-0">
+                  <a
+                    href={site.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    {site.name}
+                  </a>
+                </div>
+              ))}
             </CardContent>
           </Card>
-        ))}
+        )}
       </div>
 
       <div className="mt-8 text-center">

@@ -4,6 +4,7 @@ import { Badge } from './ui/badge';
 import { Link } from 'react-router-dom';
 import { Bot, Monitor, Grid2x2, ArrowRight, Shield, FileText } from 'lucide-react';
 
+// TODO: Fetch doc and site count from possible backend integration
 const applications = [
   {
     id: 'discord-bots',
@@ -12,7 +13,7 @@ const applications = [
     icon: Bot,
     color: 'bg-purple-100 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400',
     documentCount: 2,
-    lastUpdated: '2024-12-15',
+    lastUpdated: '2024-08-07',
   },
   {
     id: 'microsoft-apps',
@@ -21,7 +22,7 @@ const applications = [
     icon: Grid2x2,
     color: 'bg-blue-100 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400',
     documentCount: 2,
-    lastUpdated: '2024-12-10',
+    lastUpdated: '2024-08-07',
   },
   {
     id: 'desktop-apps',
@@ -30,7 +31,17 @@ const applications = [
     icon: Monitor,
     color: 'bg-green-100 text-green-600 dark:bg-green-900/20 dark:text-green-400',
     documentCount: 2,
-    lastUpdated: '2024-12-08',
+    lastUpdated: '2024-08-07',
+  },
+  {
+    id: 'websites',
+    title: 'Websites',
+    description: 'Legal documentation for website services and online platforms',
+    icon: FileText,
+    color: 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400',
+    documentCount: 2,
+    SiteCount: 2,
+    lastUpdated: '2025-09-30',
   },
 ];
 
@@ -60,7 +71,9 @@ export function HomePage() {
                 <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-semibold">6</p>
+                <p className="text-2xl font-semibold">
+                  {applications.reduce((total, app) => total + app.documentCount, 0)}
+                </p>
                 <p className="text-sm text-muted-foreground">Total Documents</p>
               </div>
             </div>
@@ -110,6 +123,11 @@ export function HomePage() {
                   <Badge variant="secondary" className="text-xs">
                     {app.documentCount} docs
                   </Badge>
+                  {app.SiteCount && (
+                    <Badge variant="secondary" className="text-xs">
+                      {app.SiteCount > 1 ? `${app.SiteCount} sites` : `${app.SiteCount} site`}
+                    </Badge>
+                  )}
                 </div>
                 <CardTitle className="text-lg">{app.title}</CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
